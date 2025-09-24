@@ -1,0 +1,28 @@
+You are a Python development expert. I want to create a simple, autonomous "Local Event Notifier Agent" on Replit.
+
+**Project Name:** Local Event Notifier
+
+**Core Functionality:**
+The agent should monitor a specified webpage for predefined keywords. If any keyword is found, it should send an email notification.
+
+**Technical Requirements:**
+
+1.  **Flask Application:** Use Flask to create a simple web server (`main.py`).
+2.  **Configuration Interface (Optional but good for easy setup):** A basic HTML form on the `/` route to allow a user to submit a URL to monitor and a comma-separated list of keywords. These should then be stored persistently (e.g., in a simple JSON file or just used for the current session for simplicity). For initial setup, it should read defaults from Replit Secrets.
+3.  **Web Scraping:** Use `requests` to fetch webpage content and `BeautifulSoup4` to parse HTML and extract relevant text.
+4.  **Keyword Detection:** Implement logic to search for multiple, case-insensitive keywords within the scraped text.
+5.  **Email Notification:**
+    * Use the `smtplib` library for sending emails.
+    * Email sender, password (using an App Password for Gmail), and receiver email addresses must be loaded from Replit Secrets: `SENDER_EMAIL`, `SENDER_EMAIL_PASSWORD`, `RECEIVER_EMAIL`.
+    * The email subject should indicate which keyword was found and on which URL.
+6.  **Agentic Behavior:** Create a route (e.g., `/check`) that, when accessed, triggers the scraping, keyword detection, and notification process. This route will be periodically pinged (assume an external service like UptimeRobot handles this).
+7.  **Persistence (simple):** For simplicity, we can initially just have the agent read a single URL and keyword list from secrets for its check cycle. If we add a web form, the submitted values can override these for a specific check.
+8.  **Logging:** Print messages to the console indicating when a check starts, if keywords are found/not found, and if an email was sent/failed.
+
+**Replit Specifics:**
+
+* Include a `requirements.txt` file for all necessary libraries.
+* Clearly state how to set up the environment variables (secrets) in Replit.
+* Provide all necessary Python (`main.py`) and HTML (`index.html`) code.
+
+**Expected Output:** When the agent finds a keyword on the monitored page, it should send an email notification. The web interface should provide a way to trigger a check manually and (optionally) configure the target.
